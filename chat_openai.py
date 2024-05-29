@@ -2,13 +2,17 @@ from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageCon
 from llama_index.llms.openai import OpenAI
 import os
 from timeit import default_timer as timer
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 start = timer()
 
 # ------------------------------------------
 # ------------ CONFIGURAR A LLM ------------
 # ------------------------------------------
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 llm = OpenAI(model="gpt-3.5-turbo")
 # ------------------------------------------
 
