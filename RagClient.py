@@ -1,10 +1,13 @@
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, load_index_from_storage
 from llama_index.llms.openai import OpenAI
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class RagClient:
     def __init__(self):
-        os.environ["OPENAI_API_KEY"] = "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"
+        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
         self.llm = OpenAI(model="gpt-3.5-turbo")
         storage_context = StorageContext.from_defaults(persist_dir="vectorstorage")
         self.index = load_index_from_storage(storage_context)
